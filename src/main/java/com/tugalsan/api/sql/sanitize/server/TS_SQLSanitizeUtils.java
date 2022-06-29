@@ -1,6 +1,7 @@
 package com.tugalsan.api.sql.sanitize.server;
 
 import com.tugalsan.api.list.client.*;
+import com.tugalsan.api.unsafe.client.*;
 import java.util.*;
 
 public class TS_SQLSanitizeUtils {
@@ -10,7 +11,7 @@ public class TS_SQLSanitizeUtils {
             return;
         }
         if (String.valueOf(word).contains(banned)) {
-            throw new RuntimeException(TS_SQLSanitizeUtils.class.getSimpleName() + ".sanitize tag [" + word + "] contains [" + banned + "]");
+            TGS_UnSafe.catchMeIfUCan(TS_SQLSanitizeUtils.class.getSimpleName(), "sanitize", "tag [" + word + "] contains [" + banned + "]");
         }
     }
 
