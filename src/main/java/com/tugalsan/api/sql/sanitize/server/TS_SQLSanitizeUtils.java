@@ -11,7 +11,7 @@ public class TS_SQLSanitizeUtils {
             return;
         }
         if (String.valueOf(word).contains(banned)) {
-            TGS_UnSafe.catchMeIfUCan(TS_SQLSanitizeUtils.class.getSimpleName(), "sanitize", "tag [" + word + "] contains [" + banned + "]");
+            TGS_UnSafe.thrw(TS_SQLSanitizeUtils.class.getSimpleName(), "sanitize", "tag [" + word + "] contains [" + banned + "]");
         }
     }
 
