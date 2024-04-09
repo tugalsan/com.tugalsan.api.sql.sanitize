@@ -1,17 +1,16 @@
 package com.tugalsan.api.sql.sanitize.server;
 
 import com.tugalsan.api.list.client.*;
-import com.tugalsan.api.unsafe.client.*;
 import java.util.*;
 
 public class TS_SQLSanitizeUtils {
 
-    public static void sanitize(Object word, CharSequence banned) {
+    public static void sanitize(Object word, CharSequence banned) throws SecurityException {
         if (word == null || banned == null) {
             return;
         }
         if (String.valueOf(word).contains(banned)) {
-            TGS_UnSafe.thrw(TS_SQLSanitizeUtils.class.getSimpleName(), "sanitize", "tag [" + word + "] contains [" + banned + "]");
+            throw new IllegalArgumentException(TS_SQLSanitizeUtils.class.getSimpleName() + "->sanitize->word [" + word + "] contains [" + banned + "]");
         }
     }
 
