@@ -5,7 +5,7 @@ import java.util.*;
 
 public class TS_SQLSanitizeUtils {
 
-    public static void sanitize(Object word, CharSequence banned) throws SecurityException {
+    public static void sanitize(Object word, CharSequence banned) throws IllegalArgumentException {
         if (word == null || banned == null) {
             return;
         }
