@@ -5,12 +5,12 @@ import java.util.*;
 
 public class TS_SQLSanitizeUtils {
 
-    public static void sanitize(Object word, CharSequence banned) throws IllegalArgumentException {
+    public static void sanitize(Object word, CharSequence banned) throws SecurityException {
         if (word == null || banned == null) {
             return;
         }
         if (String.valueOf(word).contains(banned)) {
-            throw new IllegalArgumentException(TS_SQLSanitizeUtils.class.getSimpleName() + "->sanitize->word [" + word + "] contains [" + banned + "]");
+            throw new SecurityException(TS_SQLSanitizeUtils.class.getSimpleName() + "->sanitize->word [" + word + "] contains [" + banned + "]");
         }
     }
 
