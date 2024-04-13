@@ -1,6 +1,7 @@
 package com.tugalsan.api.sql.sanitize.server;
 
 import com.tugalsan.api.list.client.*;
+import com.tugalsan.api.union.client.TGS_UnionExcuse;
 import java.util.*;
 
 public class TS_SQLSanitizeUtils {
@@ -18,6 +19,12 @@ public class TS_SQLSanitizeUtils {
         if (word == null) {
             return;
         }
+        if (word instanceof TGS_UnionExcuse u && u.isPresent()) {
+            word = u.value();
+        }
+        if (word instanceof Optional o && o.isPresent()) {
+            word = o.get();
+        }
         var wordStr = String.valueOf(word);
         if (TGS_ListUtils.of(
                 "INTEGER NOT NULL",
@@ -26,8 +33,10 @@ public class TS_SQLSanitizeUtils {
         ).contains(wordStr)) {
             return;
         }
-        TGS_ListUtils.of(",", ";", "+", "-", "*", "/", "\\", "{", "}", "[", "]", "=", "!", "<", ">", "%", " ")
-                .forEach(banned -> sanitize(word, banned));
+        var lst = TGS_ListUtils.of(",", ";", "+", "-", "*", "/", "\\", "{", "}", "[", "]", "=", "!", "<", ">", "%", " ");
+        for (var banned : lst) {
+            sanitize(word, banned);
+        }
     }
 
     public static void sanitize(List words) {
