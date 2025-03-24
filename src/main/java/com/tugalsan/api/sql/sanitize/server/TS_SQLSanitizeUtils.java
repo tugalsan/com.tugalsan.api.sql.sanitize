@@ -1,6 +1,6 @@
 package com.tugalsan.api.sql.sanitize.server;
 
-import com.tugalsan.api.function.client.maythrow.uncheckedexceptions.TGS_FuncMTUCEUtils;
+import com.tugalsan.api.function.client.maythrowexceptions.unchecked.TGS_FuncMTUUtils;
 import com.tugalsan.api.list.client.*;
 
 import java.util.*;
@@ -12,7 +12,7 @@ public class TS_SQLSanitizeUtils {
             return;
         }
         if (String.valueOf(word).contains(banned)) {
-            TGS_FuncMTUCEUtils.thrw(TS_SQLSanitizeUtils.class.getSimpleName(), "sanitize", "tag [" + word + "] contains [" + banned + "]");
+            TGS_FuncMTUUtils.thrw(TS_SQLSanitizeUtils.class.getSimpleName(), "sanitize", "tag [" + word + "] contains [" + banned + "]");
         }
     }
 
